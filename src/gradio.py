@@ -1,5 +1,4 @@
 import streamlit as st
-import pandas as pd
 import numpy as np
 import json
 from embed import Embed
@@ -10,21 +9,22 @@ import time
 # Load embeddings and chunks
 @st.cache_resource
 def load_data():
-    with open(r'data\wikipedia-embeddings-binary.json', 'r') as file:
+    #with open(r'https://github.com/jagadeeshjr5/search-engine.git\main\data\wikipedia-embeddings-binary.json', 'r') as file:
+    with open(r'data/wikipedia-embeddings-binary.json', 'r') as file:
         binary_embd = json.load(file)
     binary_embd = np.array(binary_embd).astype('uint8')
 
-    with open(r'data\wikipedia-embeddings-int8.json', 'r') as file:
+    with open(r'data/wikipedia-embeddings-int8.json', 'r') as file:
         int8_embd = json.load(file)
     int8_embd = np.array(int8_embd)
 
-    with open(r'data\wikipedia-dataset-summary.json', 'r') as file:
+    with open(r'data/wikipedia-dataset-summary.json', 'r') as file:
         summary = json.load(file)
 
-    with open(r'data\wikipedia-dataset-titles.json', 'r') as file:
+    with open(r'data/wikipedia-dataset-titles.json', 'r') as file:
         titles = json.load(file)
 
-    with open(r'data\wikipedia-dataset-description.json', 'r') as file:
+    with open(r'data/wikipedia-dataset-description.json', 'r') as file:
         description = json.load(file)
 
     #with open(r'data\wikipedia-dataset-full_text.json', 'r') as file:
@@ -44,7 +44,6 @@ def load_retrievers():
 
 faiss_retreiver, emb, cosine = load_retrievers()
 
-# Streamlit app layout
 st.title("Query-Based Document Retrieval")
 
 query = st.text_input("Enter your query:")
