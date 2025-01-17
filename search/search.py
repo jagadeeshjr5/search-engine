@@ -13,7 +13,11 @@ import whoosh
 from typing import List
 import asyncio
 import time
+import os
+import streamlit as st
 warnings.filterwarnings('ignore')
+
+api_key = os.environ["API_KEY"] if "API_KEY" in os.environ else st.secrets["API_KEY"]
 
 def load_data():
     binary_embd = asyncio.run(Embeddings.load(file_path=r'data\wikipedia-dataset-embeddings-binary.npy', indices='all', extension='npy'))
@@ -25,7 +29,7 @@ binary_embd, int8_embd = load_data()
 
 def load_retrievers():
     faiss_retreiver = FaissRetreiver(topk=50, doc_embeddings=binary_embd, precision='binary', params='auto')
-    emb = Embed(model='gemini', out_dims=256, api_key='AIzaSyBpDFpC9EsOi2vijSnuY9IzM2k-ofV-mCQ')
+    emb = Embed(model='gemini', out_dims=256, api_key=api_key)
     cosine = CosineRetreiver(topk=100, threshold=0.75)
     reranker = BiEncoderReranker()
     ks = KeywordSearch()
