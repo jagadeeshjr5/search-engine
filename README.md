@@ -3,4 +3,4 @@ Keyword &amp; Semantic search based search engine
 
 Architecture:
 
-![Alt text](https://github.com/jagadeeshjr5/causalLM-pretraining-from-scratch/blob/6cdd9acf2881bd9c9c0e0d3dca407b66d2cf6fa9/phase1_loss_curve.png)
+![Alt text](https://github.com/jagadeeshjr5/search-engine/blob/ff5da38e53c67aa54fee2aef6b87627e53a53977/search-engine-archotecture.drawio.png)
